@@ -15,8 +15,8 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendEmailAproveComent = (toClient, name) => {
-    const mainSent = transporter.sendMail({
+const sendEmailAproveComent = async (toClient, name) => {
+    const mainSent = await transporter.sendMail({
         html: `
         <div
             style="
@@ -100,8 +100,8 @@ const sendEmailAproveComent = (toClient, name) => {
     });
 };
 
-const sendMailRejectComent = (toClient, name) => {
-    const mainSent = transporter.sendMail({
+const sendMailRejectComent = async (toClient, name) => {
+    const mainSent = await transporter.sendMail({
         html: `
         <div
         style="
@@ -185,8 +185,8 @@ const sendMailRejectComent = (toClient, name) => {
     });
 };
 
-const sendMailNewComent = () => {
-    const mainSent = transporter.sendMail({
+const sendMailNewComent = async () => {
+    const mainSent = await transporter.sendMail({
         text: `
             Olá, você tem um novo comentário!`,
         subject: "Novo Comentário!",
