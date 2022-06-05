@@ -10,7 +10,7 @@ const createComents = async (req, res) => {
             message
         });
 
-        sendMailNewComent();
+        await sendMailNewComent();
 
         return res.status(201).json({
             comentario
@@ -59,7 +59,7 @@ const deleteComents = async (req, res) => {
 
         await comentario.destroy();
 
-        sendMailRejectComent(comentario.email, comentario.name);
+        await sendMailRejectComent(comentario.email, comentario.name);
 
         return res.status(204).json();
 
@@ -86,7 +86,7 @@ const statusComents = async (req, res) => {
             status: !comentario.status
         });
 
-        sendEmailAproveComent(comentario.email, comentario.name);
+        await sendEmailAproveComent(comentario.email, comentario.name);
 
         return res.status(200).json({
             comentario

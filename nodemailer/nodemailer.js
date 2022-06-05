@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendEmailAproveComent = async (toClient, name) => {
-    const mainSent = await transporter.sendMail({
+const sendEmailAproveComent = (toClient, name) => {
+    const mainSent = transporter.sendMail({
         html: `
         <div
             style="
@@ -96,14 +96,10 @@ const sendEmailAproveComent = async (toClient, name) => {
         from: "Matheus Barcellos <matheusbarcellosdev@gmail.com",
         to: `${toClient}`,
     })
-    .catch((err) => {
-        console.log(err);
-    }
-    );
 };
 
-const sendMailRejectComent = async (toClient, name) => {
-    const mainSent = await transporter.sendMail({
+const sendMailRejectComent = (toClient, name) => {
+    const mainSent = transporter.sendMail({
         html: `
         <div
         style="
@@ -185,24 +181,16 @@ const sendMailRejectComent = async (toClient, name) => {
         from: "Matheus Barcellos <matheusbarcellosdev@gmail.com",
         to: `${toClient}`,
     })
-    .catch((err) => {
-        console.log(err);
-    }
-    );
 };
 
-const sendMailNewComent = async () => {
-    const mainSent = await transporter.sendMail({
+const sendMailNewComent = () => {
+    const mainSent = transporter.sendMail({
         text: `
             Olá, você tem um novo comentário!`,
         subject: "Novo Comentário!",
         from: "Matheus Barcellos Dev <matheusbarcellosdev@gmail.com",
         to: "matheusbarcellos61@gmail.com",
     })
-    .catch((err) => {
-        console.log(err);
-    }
-    );
 };
 
 module.exports = {
