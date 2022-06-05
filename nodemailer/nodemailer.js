@@ -1,14 +1,12 @@
 const nodemailer = require("nodemailer");
 
-const SMTP_CONFIG = require("../config/smtp");
-
 const transporter = nodemailer.createTransport({
-    host: SMTP_CONFIG.host,
-    port: SMTP_CONFIG.port,
+    host: process.env.HOST_SMTP,
+    port: 587,
     secure: false,
     auth: {
-        user: SMTP_CONFIG.user,
-        pass: SMTP_CONFIG.pass,
+        user: process.env.USER_SMTP,
+        pass: process.env.PASSWORD_SMTP,
     },
     tls: {
         rejectUnauthorized: false,
@@ -97,7 +95,11 @@ const sendEmailAproveComent = async (toClient, name) => {
         subject: "Comentário Aprovado!",
         from: "Matheus Barcellos <matheusbarcellosdev@gmail.com",
         to: `${toClient}`,
-    });
+    })
+    .catch((err) => {
+        console.log(err);
+    }
+    );
 };
 
 const sendMailRejectComent = async (toClient, name) => {
@@ -182,7 +184,11 @@ const sendMailRejectComent = async (toClient, name) => {
         subject: "Comentário Rejeitado!",
         from: "Matheus Barcellos <matheusbarcellosdev@gmail.com",
         to: `${toClient}`,
-    });
+    })
+    .catch((err) => {
+        console.log(err);
+    }
+    );
 };
 
 const sendMailNewComent = async () => {
@@ -192,7 +198,11 @@ const sendMailNewComent = async () => {
         subject: "Novo Comentário!",
         from: "Matheus Barcellos Dev <matheusbarcellosdev@gmail.com",
         to: "matheusbarcellos61@gmail.com",
-    });
+    })
+    .catch((err) => {
+        console.log(err);
+    }
+    );
 };
 
 module.exports = {
